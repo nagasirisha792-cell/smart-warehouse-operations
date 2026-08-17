@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #090d16;
+    --bg-secondary: #0f1523;
+    --bg-card: rgba(18, 26, 42, 0.8);
+    --bg-card-hover: rgba(26, 37, 59, 0.9);
+    --bg-elevated: #162035;
+    --border: rgba(59, 130, 246, 0.15);
+    --border-strong: rgba(59, 130, 246, 0.3);
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #3b82f6;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+  }
+
+  html.light {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --bg-card-hover: #f1f5f9;
+    --bg-elevated: #f1f5f9;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --border-subtle: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --accent: #2563eb;
+    --shadow-color: rgba(0, 0, 0, 0.06);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  #root {
+    height: 100%;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Cards */
+  .card {
+    @apply rounded-2xl border p-5 backdrop-blur-md transition-all duration-200;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+    box-shadow: 0 4px 20px -2px var(--shadow-color);
+  }
+
+  .card-hover {
+    @apply rounded-2xl border p-5 backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+    box-shadow: 0 4px 20px -2px var(--shadow-color);
+  }
+  .card-hover:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-strong);
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold tracking-wide uppercase transition-all;
+  }
+  .badge-critical {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-red-500/10 text-red-500 border border-red-500/30;
+  }
+  .badge-high {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-orange-500/10 text-orange-500 border border-orange-500/30;
+  }
+  .badge-medium {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/30;
+  }
+  .badge-low {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-500/10 text-slate-500 border border-slate-500/20;
+  }
+  .badge-success {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/30;
+  }
+  .badge-info {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-500 border border-blue-500/30;
+  }
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/30;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-blue-500/25 border border-blue-400/30;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer border;
+    background-color: var(--bg-elevated);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer bg-red-500/15 hover:bg-red-500/25 text-red-500 border border-red-500/30;
+  }
+  .btn-success {
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-500 border border-emerald-500/30;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 cursor-pointer text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800/50;
+  }
+  .btn-icon {
+    @apply p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800/60 transition-all active:scale-95 cursor-pointer;
+  }
+
+  /* Table */
+  .table-wrapper {
+    @apply overflow-hidden rounded-2xl border backdrop-blur-md;
+    border-color: var(--border);
+    background-color: var(--bg-card);
+  }
+  .table {
+    @apply w-full text-xs text-left border-collapse;
+  }
+  .table th {
+    @apply px-4 py-3.5 text-[11px] font-bold uppercase tracking-wider border-b;
+    color: var(--text-muted);
+    background-color: var(--bg-secondary);
+    border-color: var(--border);
+  }
+  .table td {
+    @apply px-4 py-3.5 border-b transition-colors;
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+  }
+  .table tr:last-child td {
+    @apply border-0;
+  }
+  .table tr:hover td {
+    background-color: var(--bg-elevated);
+  }
+
+  /* Inputs */
+  .input {
+    @apply border rounded-xl px-3.5 py-2 text-xs placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all;
+    background-color: var(--bg-elevated);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+  .select {
+    @apply border rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all appearance-none cursor-pointer pr-8;
+    background-color: var(--bg-elevated);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+
+  /* Typography */
+  .section-title {
+    @apply text-base font-bold tracking-tight;
+    color: var(--text-primary);
+  }
+  .section-subtitle {
+    @apply text-xs font-normal mt-0.5;
+    color: var(--text-muted);
+  }
+
+  /* Stats */
+  .stat-card {
+    @apply rounded-2xl border p-4 backdrop-blur-md transition-all duration-200 relative overflow-hidden flex flex-col justify-between;
+    background-color: var(--bg-card);
+    border-color: var(--border);
+  }
+  .stat-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border-strong);
+  }
+  .stat-value {
+    @apply text-2xl font-black tabular-nums tracking-tight;
+    color: var(--text-primary);
+  }
+  .stat-label {
+    @apply text-[11px] font-semibold uppercase tracking-wider;
+    color: var(--text-muted);
+  }
+
+  /* Alerts */
+  .alert-critical {
+    @apply bg-red-500/10 border border-red-500/30 rounded-2xl p-4 shadow-lg;
+  }
+  .alert-high {
+    @apply bg-orange-500/10 border border-orange-500/30 rounded-2xl p-4 shadow-lg;
+  }
+  .alert-medium {
+    @apply bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 shadow-lg;
+  }
+
+  /* Nav */
+  .nav-item {
+    @apply flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 cursor-pointer;
+    color: var(--text-secondary);
+  }
+  .nav-item:hover {
+    background-color: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+  .nav-item-active {
+    @apply flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 cursor-pointer bg-blue-500/15 border border-blue-500/30 text-blue-500;
+  }
+
+  /* Modal */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black/75 backdrop-blur-md z-50 flex items-center justify-center p-4 animate-fade-in;
+  }
+  .modal-content {
+    @apply rounded-3xl border w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl backdrop-blur-xl;
+    background-color: var(--bg-secondary);
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+  }
+  .modal-header {
+    @apply px-6 py-4 border-b flex items-center justify-between sticky top-0 backdrop-blur-md z-10;
+    background-color: var(--bg-secondary);
+    border-color: var(--border);
+  }
+  .modal-body {
+    @apply px-6 py-5 space-y-5;
+  }
+  .modal-footer {
+    @apply px-6 py-4 border-t flex items-center justify-end gap-3 sticky bottom-0 backdrop-blur-md z-10;
+    background-color: var(--bg-secondary);
+    border-color: var(--border);
+  }
+
+  /* Copilot */
+  .copilot-bubble-user {
+    @apply self-end bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl rounded-br-sm px-4 py-3 max-w-[85%] text-xs shadow-md;
+  }
+  .copilot-bubble-ai {
+    @apply self-start rounded-2xl rounded-bl-sm px-4 py-3 max-w-[90%] text-xs border shadow-md;
+    background-color: var(--bg-elevated);
+    border-color: var(--border);
+    color: var(--text-primary);
+  }
+}
+
+.custom-tooltip {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text-primary);
+  box-shadow: 0 10px 25px -5px var(--shadow-color);
+}
